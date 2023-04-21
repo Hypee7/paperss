@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+      <div class="father-chesse">
+        <div class="child-chesse">
+            <div class="big-option">
+                <h2>Player</h2>
+                <img id="player-choice" src="img/paper.png" class="rt"  alt="">
+            </div>
+            <h2>Options</h2>
+            <div class="options">
+                <img src="img/papel.png" class="rt" alt="" onclick="play('papel')">
+                <img src="img/piedra.png" alt="" onclick="play('piedra')">
+                <img src="img/tijeras.png" alt="" onclick="play('tijeras')">
+            </div>
+        </div>
+        <h1>Vs</h1>
+        <div class="child-chesse">
+            <div class="big-option">
+                <h2>Cpu</h2>
+                <img id="computer-choice" src="img/rock.png" alt="">
+            </div>
+            <h2>Options</h2>
+            <div class="options">
+                <img src="img/papel.png"  alt="">
+                <img src="img/piedra.png" alt="">
+                <img src="img/tijeras.png"  alt="">
+            </div>
+        </div>
+      </div>
+
+    <script>
+        function play(userChoice) {
+            // Verificar si userChoice es uno de los valores esperados
+            if (['piedra', 'papel', 'tijeras'].includes(userChoice)) {
+                // Actualizar la imagen grande para mostrar la opción elegida por el usuario
+                document.getElementById('player-choice').src = 'img/' + userChoice + '.png';
+            }
+
+            var choices = ['piedra', 'papel', 'tijeras'];
+            var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            // Verificar si computerChoice es uno de los valores esperados
+            if (['piedra', 'papel', 'tijeras'].includes(computerChoice)) {
+                // Actualizar la imagen grande para mostrar la opción elegida por la computadora
+                document.getElementById('computer-choice').src = 'img/' + computerChoice + '.png';
+            }
+
+            var result = '';
+            if (userChoice === computerChoice) {
+                result = 'Empate!';
+            } else if ((userChoice === 'piedra' && computerChoice === 'tijeras') ||
+                       (userChoice === 'papel' && computerChoice === 'piedra') ||
+                       (userChoice === 'tijeras' && computerChoice === 'papel')) {
+                result = 'Ganaste!';
+            } else {
+                result = 'Perdiste!';
+            }
+            alert(result);
+        }
+    </script>
+</body>
+</html>
